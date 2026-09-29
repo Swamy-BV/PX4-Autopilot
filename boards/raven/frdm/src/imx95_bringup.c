@@ -25,7 +25,7 @@
 
 int imx95_bringup(void)
 {
-    /* Parameters are volatile until persistent storage is validated. */
-    int ret = nx_mount(NULL, "/fs/ram", "tmpfs", 0, NULL);
-    return ret == -EBUSY ? 0 : ret;
+	/* Parameters are volatile until persistent storage is validated. */
+	int ret = nx_mount(NULL, "/fs/ram", "tmpfs", 0, NULL);
+	return ret == -EBUSY ? 0 : ret;
 }
