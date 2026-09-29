@@ -40,3 +40,10 @@ px4_add_library(drivers_board
 )
 set_source_files_properties(init.c PROPERTIES COMPILE_FLAGS "-fno-builtin -mgeneral-regs-only")
 target_link_libraries(drivers_board PRIVATE drivers__led nuttx_arch nuttx_drivers px4_layer)
+
+# The console-only target has no flight modules to pull in the task API.
+# Express the work queue dependency so the static linker resolves it.
+cmake_policy(PUSH)
+cmake_policy(SET CMP0079 NEW)
+target_link_libraries(px4_work_queue PRIVATE px4_layer)
+cmake_policy(POP)
