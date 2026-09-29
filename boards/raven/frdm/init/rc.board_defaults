@@ -1,14 +1,2 @@
 #!/bin/sh
-#
-# board specific defaults
-#------------------------------------------------------------------------------
-
-param set-default BAT1_V_DIV 64.400000000
-
-if param greater -s UAVCAN_ENABLE 0
-then
-	ifup can0
-	ifup can1
-fi
-
-nshterm /dev/ttynsh &
+# Raven FRDM console-only bring-up; peripheral services are added later.

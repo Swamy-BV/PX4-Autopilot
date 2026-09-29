@@ -1,17 +1,2 @@
 #!/bin/sh
-#
-# NavQ95 specific board sensors init
-#------------------------------------------------------------------------------
-
-board_adc start
-
-icm45686 -R 12 -s start
-
-# Internal on IMU SPI BMI088
-bmi088 -A -R 6 -s start
-bmi088 -G -R 6 -s start
-
-bmm350 -I -R 6 start
-bmp581 -I start
-
-i2c_launcher start -b 6 -t 1
+# Raven FRDM console-only bring-up; peripheral services are added later.
