@@ -52,4 +52,3 @@ constexpr px4_spi_bus_t px4_spi_buses[] = {
 	}),
 };
 #endif
-
