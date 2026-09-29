@@ -128,7 +128,6 @@ int board_app_initialize(uintptr_t arg)
 
 	px4_platform_configure();
 
-	imx9_spiinitialize();
 
 	return ret;
 }

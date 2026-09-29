@@ -18,8 +18,8 @@
  *
  ****************************************************************************/
 
-#ifndef __BOARDS_NXP_IMX95_NUTTX_CONFIG_INCLUDE_BOARD_H
-#define __BOARDS_NXP_IMX95_NUTTX_CONFIG_INCLUDE_BOARD_H
+#ifndef __BOARDS_RAVEN_FRDM_NUTTX_CONFIG_INCLUDE_BOARD_H
+#define __BOARDS_RAVEN_FRDM_NUTTX_CONFIG_INCLUDE_BOARD_H
 
 /****************************************************************************
  * Included Files
@@ -258,4 +258,4 @@ extern "C"
 #endif
 
 #endif /* __ASSEMBLY__ */
-#endif /* __BOARDS_NXP_IMX95_NUTTX_CONFIG_INCLUDE_BOARD_H */
+#endif /* __BOARDS_RAVEN_FRDM_NUTTX_CONFIG_INCLUDE_BOARD_H */

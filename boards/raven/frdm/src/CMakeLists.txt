@@ -32,38 +32,11 @@
 ############################################################################
 
 px4_add_library(drivers_board
-	#can.c
-	i2c.cpp
-	led.c
-	# mtd.cpp
-	spi.cpp
-	timer_config.cpp
-	init.c
-	imx95_boardinit.c
-	imx95_bringup.c
-	imx95-evk.h
-	imx95_i2c.c
-	imx95_pwm.c
-	imx95_spi.c
-	iomux_table.c
-
-	${SRCS}
+    led.c
+    init.c
+    imx95_boardinit.c
+    imx95_bringup.c
+    ${SRCS}
 )
-
-# Force compiler not to use builtin functions (like memcpy) to optimize the
-# for-loops in init.c (imx9_init_isram_functions), and forbid FPU/NEON
-# instructions: that code runs before arm_fpuconfig() enables the FPU, so the
-# 64-bit ITCM stores must stay integer (strd) rather than vstr.
 set_source_files_properties(init.c PROPERTIES COMPILE_FLAGS "-fno-builtin -mgeneral-regs-only")
-
-target_link_libraries(drivers_board
-	PRIVATE
-		# arch_board_hw_info
-		# arch_board_romapi
-		arch_spi
-		arch_io_pins
-		drivers__led # drv_led_start
-		nuttx_arch # sdio
-		nuttx_drivers # sdio
-		px4_layer
-)
+target_link_libraries(drivers_board PRIVATE drivers__led nuttx_arch nuttx_drivers px4_layer)
