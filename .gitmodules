@@ -16,12 +16,12 @@
 	branch = main
 [submodule "platforms/nuttx/NuttX/nuttx"]
 	path = platforms/nuttx/NuttX/nuttx
-	url = https://github.com/PX4/NuttX.git
-	branch = px4_firmware_nuttx-12.12.0+
+	url = https://github.com/Swamy-BV/NuttX.git
+	branch = develop
 [submodule "platforms/nuttx/NuttX/apps"]
 	path = platforms/nuttx/NuttX/apps
-	url = https://github.com/PX4/NuttX-apps.git
-	branch = px4_firmware_nuttx-12.12.0+
+	url = https://github.com/Swamy-BV/NuttX-apps.git
+	branch = develop
 [submodule "Tools/flightgear_bridge"]
 	path = Tools/simulation/flightgear/flightgear_bridge
 	url = https://github.com/PX4/PX4-FlightGear-Bridge.git
