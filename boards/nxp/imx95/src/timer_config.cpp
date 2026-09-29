@@ -81,4 +81,3 @@ const timer_io_channels_t timer_io_channels[MAX_TIMER_IO_CHANNELS] = {
 
 const io_timers_channel_mapping_t io_timers_channel_mapping =
 	initIOTimerChannelMapping(io_timers, timer_io_channels);
-

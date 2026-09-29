@@ -42,4 +42,3 @@ add_subdirectory(../imx9/tone_alarm tone_alarm)
 add_subdirectory(../imx9/version version)
 add_subdirectory(../imx9/spi spi)
 add_subdirectory(../imx9/dshot dshot)
-
