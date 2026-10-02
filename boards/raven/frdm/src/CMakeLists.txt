@@ -47,3 +47,11 @@ cmake_policy(PUSH)
 cmake_policy(SET CMP0079 NEW)
 target_link_libraries(px4_work_queue PRIVATE px4_layer)
 cmake_policy(POP)
+
+# The console-only target references these archives indirectly. Keep the
+# dependencies on their consumers so static linking works across toolchains.
+cmake_policy(PUSH)
+cmake_policy(SET CMP0079 NEW)
+target_link_libraries(px4_layer PRIVATE parameters)
+target_link_libraries(uORB PRIVATE px4_work_queue)
+cmake_policy(POP)
