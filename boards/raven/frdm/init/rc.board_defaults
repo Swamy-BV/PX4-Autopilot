@@ -1,2 +1,4 @@
 #!/bin/sh
-# Raven FRDM console-only bring-up; peripheral services are added later.
+# Sensor-free multicopter bench defaults. Hardware arming checks remain enabled.
+param set-default MAV_TYPE 2
+param set-default SYS_DM_BACKEND 1

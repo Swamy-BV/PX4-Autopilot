@@ -1,2 +1,8 @@
 #!/bin/sh
-# Raven FRDM console-only bring-up; peripheral services are added later.
+# Follow NXP's companion transport when Linux RPMsg provides the device.
+if [ -c /dev/ttyproxy ]
+then
+    mavlink start -a -w -x -d /dev/ttyproxy -b 921600 -m onboard
+else
+    echo "Raven MAVLink waiting for Linux RPMsg transport"
+fi
