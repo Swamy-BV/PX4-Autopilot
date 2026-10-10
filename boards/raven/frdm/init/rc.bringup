@@ -1,0 +1,20 @@
+#!/bin/sh
+# Sensor-free bench startup. Parameters are volatile until persistent storage is enabled.
+set +e
+ver all
+. /etc/init.d/rc.filepaths
+param select $PARAM_FILE
+if param load-or-init
+then
+    echo "Raven bench parameters ready (RAM only)"
+else
+    echo "ERROR [init] Raven parameter initialization failed"
+fi
+. /etc/init.d/rc.board_defaults
+. /etc/init.d/rc.board_sensors
+. /etc/init.d/rc.board_mavlink
+if [ -f /etc/init.d/rc.board_extras ]
+then
+    . /etc/init.d/rc.board_extras
+fi
+echo "Raven sensor-free bench startup complete"
