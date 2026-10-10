@@ -26,13 +26,13 @@
  *    1) 256Kb of program memory located at 0x0000:0000
  *    2) 256Kb of data memory beginning at the address 0x2000:0000
  *    3) 352Kb of OCRAM beginning at the address 0x2048:0000, 96kB reserved for VPU
- *    4) 4Mb of SDRAM located at 0x9000:0000
+ *    4) 4Mb of SDRAM located at 0x8000:0000
  */
 
 MEMORY
 {
-  m_interrupts (rx)  : ORIGIN = 0x90000000, LENGTH = 0x00000800
-  flash (rx)  : ORIGIN = 0x90000800, LENGTH = 0x003FF800
+  m_interrupts (rx)  : ORIGIN = 0x80000000, LENGTH = 0x00000800
+  flash (rx)  : ORIGIN = 0x80000800, LENGTH = 0x003FF800
   sram  (rwx) : ORIGIN = 0x20000000, LENGTH = 256K
   itcm  (rwx) : ORIGIN = 0x00000000, LENGTH = 256K
   ocram (rwx) : ORIGIN = 0x20480000, LENGTH = 256K

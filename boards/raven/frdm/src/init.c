@@ -47,6 +47,34 @@ extern uint64_t _itcm_start;         /* ITCM bank base (from linker) */
 extern uint64_t _itcm_end;           /* ITCM bank end  (from linker) */
 __END_DECLS
 
+/* RAM download on iMX95 B0 does not run the TCM initialization OEI.
+ * Enable both TCM banks and seed DTCM ECC before NuttX uses its stack.
+ * The linker wraps __start so this runs before its C function prologue.
+ */
+
+__EXPORT void __wrap___start(void) __attribute__((naked));
+
+__EXPORT void __wrap___start(void)
+{
+	__asm__ volatile(
+		"ldr r0, =0xe000ef90\n\t"
+		"movs r1, #7\n\t"
+		"str r1, [r0]\n\t"
+		"str r1, [r0, #4]\n\t"
+		"dsb\n\t"
+		"isb\n\t"
+		"ldr r0, =_ram_start\n\t"
+		"ldr r1, =_ram_end\n\t"
+		"movs r2, #0\n\t"
+		"movs r3, #0\n\t"
+		"1: strd r2, r3, [r0], #8\n\t"
+		"cmp r0, r1\n\t"
+		"blo 1b\n\t"
+		"dsb\n\t"
+		"b __real___start\n\t"
+	);
+}
+
 /****************************************************************************
  * Name: imx9_init_isram_functions
  *
