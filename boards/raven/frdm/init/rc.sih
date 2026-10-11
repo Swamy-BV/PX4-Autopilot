@@ -1,0 +1,35 @@
+#!/bin/sh
+# Bench-only simulation: upstream SIH physics and simulated outputs.
+set +e
+ver all
+. /etc/init.d/rc.filepaths
+param select $PARAM_FILE
+param load-or-init
+. /etc/init.d/rc.board_defaults
+. /etc/init.d/airframes/1100_rc_quad_x_sih.hil
+param set SYS_AUTOSTART 1100
+param set COM_RC_IN_MODE 4
+dataman start -r
+load_mon start
+send_event start
+sensors start -h
+simulator_sih start
+sensor_baro_sim start
+sensor_mag_sim start
+sensor_gps_sim start
+sensor_agp_sim start
+battery_simulator start
+ekf2 start
+commander start -h
+pwm_out_sim start -m hil
+manual_control start
+flight_mode_manager start
+mc_att_control start
+mc_rate_control start
+mc_pos_control start
+control_allocator start
+land_detector start multicopter
+navigator start
+. /etc/init.d/rc.board_mavlink
+logger start -m mavlink
+mavlink boot_complete
