@@ -22,10 +22,32 @@
 #include <nuttx/fs/fs.h>
 #include <errno.h>
 #include "imx95-evk.h"
+#ifdef CONFIG_RPTUN
+# include <imx9_rptun.h>
+#endif
+#ifdef CONFIG_RPMSG_UART
+# include <nuttx/serial/uart_rpmsg.h>
+
+void rpmsg_serialinit(void)
+{
+	uart_rpmsg_init("netcore", "proxy", 1024, false);
+	uart_rpmsg_init("netcore", "mavmin", 1024, false);
+	uart_rpmsg_init("netcore", "ros", 1024, false);
+	uart_rpmsg_init("netcore", "nsh", 1024, false);
+}
+#endif
 
 int imx95_bringup(void)
 {
+#ifdef CONFIG_RPTUN
+	int ret = imx9_rptun_init("imx9-shmem", "netcore");
+
+	if (ret < 0) {
+		return ret;
+	}
+
+#endif
 	/* Parameters are volatile until persistent storage is validated. */
-	int ret = nx_mount(NULL, "/fs/ram", "tmpfs", 0, NULL);
-	return ret == -EBUSY ? 0 : ret;
+	int mount_ret = nx_mount(NULL, "/fs/ram", "tmpfs", 0, NULL);
+	return mount_ret == -EBUSY ? 0 : mount_ret;
 }
