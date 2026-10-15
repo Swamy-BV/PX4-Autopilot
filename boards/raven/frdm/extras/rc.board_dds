@@ -1,0 +1,8 @@
+#!/bin/sh
+# Dedicated RPMsg channel; MAVLink remains on ttyproxy for ground-station access.
+if [ -c /dev/ttyros ]
+then
+    uxrce_dds_client start -t serial -d /dev/ttyros -b 921600
+else
+    echo "Raven DDS waiting for Linux RPMsg transport"
+fi

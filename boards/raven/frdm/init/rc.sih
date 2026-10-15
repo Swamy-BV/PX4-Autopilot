@@ -33,3 +33,4 @@ navigator start
 . /etc/init.d/rc.board_mavlink
 logger start -m mavlink
 mavlink boot_complete
+. /etc/extras/rc.board_dds
